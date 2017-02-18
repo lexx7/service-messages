@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+ 	<definition name="component/header" template="/WEB-INF/view/component/header.jsp" preparer="headerViewPreparer"/>
+	<definition name="component/footer" template="/WEB-INF/view/component/footer.jsp" />
+
+    <definition name="component/layout" template="/WEB-INF/view/component/layout.jsp" >
+		<put-attribute name="header" value="component/header" />
+		<put-attribute name="footer" value="component/footer" />
+	</definition>
+	
+	<definition name="content/main" template="/WEB-INF/view/main.jsp"/>
+	<definition name="content/user" template="/WEB-INF/view/user.jsp"/>
+	<definition name="content/registration" template="/WEB-INF/view/registration.jsp"/>
+	<definition name="content/message/send" template="/WEB-INF/view/message-send.jsp"/>
+	<definition name="content/login" template="/WEB-INF/view/login.jsp"/>
+	<definition name="content/address-book" template="/WEB-INF/view/address-book.jsp"/>
+	<definition name="content/users" template="/WEB-INF/view/user-control.jsp"/>
+
+	<!-- Controllers view -->
+
+	<definition name="userReplacePassword" template="/WEB-INF/view/replace-password.jsp"/>
+	<definition name="userRole" template="/WEB-INF/view/user-role.jsp" />
+	<definition name="addressBookForm" template="/WEB-INF/view/address-book-form.jsp"/>
+	<definition name="empty" template="/WEB-INF/view/empty.jsp"/>
+	<definition name="message" template="/WEB-INF/view/message.jsp"/>
+
+ 	<definition name="main" extends="component/layout">
+		<put-attribute name="title" value="Сообщения" />
+		<put-attribute name="content" value="content/main" />
+	</definition>
+
+	<definition name="address-book" extends="component/layout">
+		<put-attribute name="title" value="Адресная книга" />
+		<put-attribute name="content" value="content/address-book" />
+	</definition>
+
+	<definition name="registration" extends="component/layout">
+		<put-attribute name="title" value="Регистрация пользователя" />
+		<put-attribute name="content" value="content/registration" />
+	</definition>
+
+	<definition name="user" extends="component/layout">
+		<put-attribute name="title" value="Создание пользователя" />
+		<put-attribute name="content" value="content/user" />
+	</definition>
+
+	<definition name="login" extends="component/layout">
+		<put-attribute name="title" value="Вход" />
+		<put-attribute name="content" value="content/login" />
+	</definition>
+
+	<definition name="message-send" extends="component/layout">
+		<put-attribute name="title" value="Отправка сообщения" />
+		<put-attribute name="content" value="content/message/send" />
+	</definition>
+
+	<definition name="users" extends="component/layout">
+		<put-attribute name="title" value="Управление пользователями" />
+		<put-attribute name="content" value="content/users" />
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+
+ 	<resource-ref>
+    	<res-ref-name>jdbc/serviceMessagesDataSource</res-ref-name> <!-- matches web.xml -->
+    	<jndi-name>java:jboss/datasources/PostgreSQLDS</jndi-name> <!-- matches oracle-ds.xml -->
+  	</resource-ref>
+
+</jboss-web>

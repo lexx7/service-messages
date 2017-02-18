@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:jee="http://www.springframework.org/schema/jee"
+	   xmlns:security="http://www.springframework.org/schema/security"
+	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.lexx7.servicemessages.business" />
+
+	<tx:annotation-driven />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" /><!-- для продакшена выключить -->
+				<property name="showSql" value="true" />
+			</bean>
+		</property>
+		<property name="packagesToScan" value="com.lexx7.servicemessages.model.entity" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.connection.useUnicode">true</prop>
+				<prop key="hibernate.connection.characterEncoding">UTF-8"</prop>
+			</props>
+		</property>
+	</bean>
+
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/serviceMessagesDataSource" />
+	
+	<!-- Security -->
+	
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="userService" >
+			<security:password-encoder ref="passwordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	<security:http use-expressions="true">
+	 	<security:intercept-url pattern="/main"
+								access="hasRole(T(com.lexx7.servicemessages.model.security.UserRole).ROLE_USER.name())"/>
+	 	<security:intercept-url pattern="/"
+								access="hasRole(T(com.lexx7.servicemessages.model.security.UserRole).ROLE_USER.name())"/>
+	 	<security:intercept-url pattern="/message/**"
+								access="hasRole(T(com.lexx7.servicemessages.model.security.UserRole).ROLE_USER.name())"/>
+	 	<security:intercept-url pattern="/address-book/**"
+								access="hasRole(T(com.lexx7.servicemessages.model.security.UserRole).ROLE_USER.name())"/>
+		<security:intercept-url pattern="/replace-password/**"
+								access="hasRole(T(com.lexx7.servicemessages.model.security.UserRole).ROLE_USER.name())"/>
+		<security:intercept-url pattern="/user/**"
+								access="hasRole(T(com.lexx7.servicemessages.model.security.UserRole).ROLE_ADMIN.name())"/>
+        <security:intercept-url pattern="/registration" access="permitAll"/>
+        <security:intercept-url pattern="/login" access="permitAll"/>
+
+        <security:form-login login-page="/login" default-target-url="/main" authentication-failure-url="/login?error=true"/>
+        <security:logout logout-url="/logout" logout-success-url="/login"/>
+    </security:http>
+
+</beans>
