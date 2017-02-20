@@ -9,8 +9,6 @@
 	<form:form class="form-horizontal" method="post"
 			   modelAttribute="replacePasswordUserForm" action="${userReplacePassword}">
 
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
 		<form:input id="id" path="id" type="hidden" />
 
 		<spring:bind path="password">
