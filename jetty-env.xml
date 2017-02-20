@@ -8,10 +8,10 @@
 		<Arg>jdbc/serviceMessagesDataSource</Arg>
 		<Arg>
 			<New class="org.apache.commons.dbcp.BasicDataSource">
-				<Set name="driverClassName">org.postgresql.Driver</Set>
-				<Set name="url">jdbc:postgresql://127.0.0.1/smtest</Set>
-				<Set name="username">postgres</Set>
-				<Set name="password">Bdfy0db4</Set>
+				<Set name="driverClassName">org.hsqldb.jdbc.JDBCDriver</Set>
+				<Set name="url">jdbc:hsqldb:file:db/test_hsqldb</Set>
+				<Set name="username">sa</Set>
+				<Set name="password"></Set>
 			</New>
 		</Arg>
 	</New>
