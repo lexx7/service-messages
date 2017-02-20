@@ -7,8 +7,6 @@
 	<div>
 		<form:form class="form-horizontal" method="post" modelAttribute="userRoleForm">
 
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
 			<form:input path="id" type="hidden" class="form-control" readonly="true" />
 
 			<spring:bind path="admin">
