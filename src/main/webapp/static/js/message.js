@@ -76,7 +76,7 @@ Message = {
             method: "GET",
             url: url,
             success: function (result) {
-                var data = $(result).find('div:first').html();
+                var data = $(result).find('div').first().html();
 
                 if (_self.dialog == null) {
 
