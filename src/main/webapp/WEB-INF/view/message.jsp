@@ -3,7 +3,6 @@
 	xmlns:form="http://www.springframework.org/tags/form"
 	xmlns:spring="http://www.springframework.org/tags" version="2.3">
 
-	<div>
 		<div class="form-group">
 			<label class="control-label col-sm-3 form-control-static">Отправитель:</label>
 			<div class="col-sm-9 form-control-static">
@@ -32,6 +31,5 @@
 						  class="form-control">${messageForm.message}</textarea>
 			</div>
 		</div>
-	</div>
 
 </jsp:root>

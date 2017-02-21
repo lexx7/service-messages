@@ -19,11 +19,10 @@ User = {
         $(document).on('click', '.edit-role', function () {
             var url = $(this).attr("href");
             $.ajax({
-                dataType: "xml",
+                dataType: "html",
                 method: "GET",
                 url: url,
                 success: function (result) {
-                    var data = $(result).find('div').first().html();
 
                     if (_self.dialog == null) {
                         _self.dialog = $("<div id='userRoleDialog'></div>").dialog({
@@ -33,7 +32,7 @@ User = {
                             resizable: false
                         });
                     }
-                    _self.dialog.html(data);
+                    _self.dialog.html(result);
                     _self.dialog.dialog('open');
                     _self.updateForm("#userRoleDialog", "#userRoleForm");
                 }

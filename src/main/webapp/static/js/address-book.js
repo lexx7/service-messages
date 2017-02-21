@@ -17,11 +17,10 @@ AddressBook = {
             var url = $(this).data('href');
 
             $.ajax({
-                dataType: "xml",
+                dataType: "html",
                 method: "GET",
                 url: url,
                 success: function (result) {
-                    var data = $(result).find('div').first().html();
 
                     if (_self.dialog == null) {
                         _self.dialog = $("<div id='addressBookDialog'></div>").dialog({
@@ -31,7 +30,7 @@ AddressBook = {
                             resizable: false
                         });
                     }
-                    _self.dialog.html(data);
+                    _self.dialog.html(result);
                     _self.dialog.dialog('open');
 
                     ServiceMessages.updateForm("#addressBookDialog", "#addressBookForm");

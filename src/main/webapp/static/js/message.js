@@ -72,11 +72,10 @@ Message = {
         var url = $("#viewMessage").data('href') + id;
 
         $.ajax({
-            dataType: "xml",
+            dataType: "html",
             method: "GET",
             url: url,
             success: function (result) {
-                var data = $(result).find('div').first().html();
 
                 if (_self.dialog == null) {
 
@@ -87,7 +86,7 @@ Message = {
                         resizable: false
                     });
                 }
-                _self.dialog.html(data);
+                _self.dialog.html(result);
                 _self.dialog.dialog('open');
             }
         });

@@ -4,7 +4,6 @@
 	xmlns:spring="http://www.springframework.org/tags"
 	xmlns:c = "http://java.sun.com/jsp/jstl/core" version="2.3">
 
-	<div>
 
 		<form:form class="form-horizontal" method="post" modelAttribute="addressBookForm">
 
@@ -39,5 +38,4 @@
 
 		</form:form>
 
-	</div>
 </jsp:root>
